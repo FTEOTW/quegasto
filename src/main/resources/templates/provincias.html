@@ -1,19 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	
 </head>
+
 <body>
-<table>
-		<tr>
-			<th>ID</th>
-			<th>Name</th>
-		</tr>
-		<tr th:each="province : ${provinces}">
-			<td th:text="${province.id}"></td>
-			<td th:text="${province.provincia}"></td>
-		</tr>
-	</table>
+      <div class="container">
+		<table class="table">
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+			</tr>
+			<tr th:each="province : ${provinces}">
+				<td th:text="${province.id}"></td>
+				<td th:text="${province.provincia}"></td>
+			</tr>
+		</table>
+	</div>
+
 </body>
+
 </html>
+

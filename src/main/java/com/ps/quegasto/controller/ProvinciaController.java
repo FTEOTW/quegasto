@@ -37,5 +37,4 @@ public class ProvinciaController {
 	public void saveProvincia(@RequestBody Provincia provincia) {
 		provinciaService.saveProvincia(provincia);
 	}
-
 }

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+	<meta charset="ISO-8859-1">
+	<title>Presupuestos</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+</head>
+
+<body>
+	<div class="container">
+		<a th:href="@{/presupuestos/add}" class="btn btn-primary">Agregar Presupuesto</a>
+		<br><br>
+		<table class="table">
+			<tr>
+				<th>Name</th>
+				<th>Fecha Inicio</th>
+				<th>Fecha Fin</th>
+			</tr>
+			<tr th:each="presupuesto : ${presupuestos}">
+				<td th:text="${presupuesto.nombre}"></td>
+				<td th:text="${presupuesto.fecha_comienzo}"></td>
+				<td th:text="${presupuesto.fecha_fin}"></td>
+			</tr>
+		</table>
+	</div>
+
+</body>
+
+</html>

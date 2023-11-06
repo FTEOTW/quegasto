@@ -15,17 +15,17 @@ import com.ps.quegasto.model.Provincia;
 import com.ps.quegasto.service.ProvinciaService;
 
 @Controller
-@RequestMapping
+@RequestMapping("/provincias/")
 public class ProvinciaController {
 
 	@Autowired
 	private ProvinciaService provinciaService;
 
-	@GetMapping("/prov")
+	@GetMapping("/")
 	public String getAllProvincias(Model model) {
 		List<Provincia> provinces = provinciaService.getAllProvincias();
 		model.addAttribute("provinces", provinces);
-		return "provincias";
+		return "/provincia/provincias";
 	}
 
 	@GetMapping("/{id}")

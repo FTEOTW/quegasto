@@ -2,50 +2,54 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Agregar Categoria</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Agregar Categoria</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<style>
+		body {
+			background-color: #f8f9fa;
+		}
 
-        .container {
-            max-width: 500px;
-            margin: 100px auto;
-            background-color: #fff;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+		.container {
+			max-width: 500px;
+			margin: 100px auto;
+			background-color: #fff;
+			border-radius: 10px;
+			padding: 20px;
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+		}
 
-        .btn-save {
-            background-color: #007bff;
-            border: none;
-        }
-    </style>
+		.btn-save {
+			background-color: #007bff;
+			border: none;
+		}
+	</style>
 </head>
 
 <body>
-    <div class="container">
-        <h2 class="mb-4">Agregar Categoria</h2>
-        <form th:action="@{/categorias/guardar}" th:object=${categoria} method="POST">
-            <div class="form-group">
-                <label for="categoryName">Nombre</label>
-                <input th:field="*{nombre}" type="text" class="form-control" id="categoryName" name="categoryName" required>
-            </div>
-            <div class="form-group">
-                <label for="description">Descripcion</label>
-                <textarea th:field="*{descripcion}" class="form-control" id="description" name="description" rows="3"></textarea>
-            </div>
-            <button type="submit" class="btn btn-save text-white">Guardar</button>
-        </form>
-    </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<div class="container">
+		<h2 class="mb-4">Agregar Categoria</h2>
+		<form th:action="@{/categorias/guardar}" th:object=${categoria} method="POST">
+			<div class="form-group">
+				<label for="categoryName">Nombre</label>
+				<input th:field="*{nombre}" type="text" class="form-control" id="categoryName" name="categoryName"
+					required>
+			</div>
+			<div class="form-group">
+				<label for="description">Descripcion</label>
+				<textarea th:field="*{descripcion}" class="form-control" id="description" name="description"
+					rows="3"></textarea>
+			</div>
+			<button type="submit" class="btn btn-save text-white">Guardar</button>
+			<a href="/categorias/cancelar" class="btn btn-secondary">Cancelar</a> <!-- Enlace para cancelar -->
+		</form>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
 
 </html>

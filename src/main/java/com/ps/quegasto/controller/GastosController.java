@@ -14,5 +14,11 @@ public class GastosController {
 	public String addGasto(Model model) {
 		return "cargagastos";
 	}
+	
+	@GetMapping("/")
+	public String list(Model model) {
+		
+		return "cargagastos";
+	}
 
 }

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Map Example</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+</head>
+<body>
+    <div id="map" style="height: 400px;"></div>
+
+    <script src="/webjars/leaflet/1.7.1/leaflet.js"></script>
+    <script>
+        // Initialize the map
+        var map = L.map('map').setView([-31.35764,-64.33787], 13);
+
+        // Add a tile layer (in this case, OpenStreetMap)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Add a marker
+        L.marker([-31.35764,-64.33787]).addTo(map)
+            .bindPopup('A sample marker!')
+            .openPopup();
+    </script>
+</body>
+</html>

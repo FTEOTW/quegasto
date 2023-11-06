@@ -1,67 +1,95 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Lista de Productos</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Lista de Productos</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 </head>
+
 <body>
-    <div class="container mt-4">
-        <h1 class="mb-4">Lista de Productos</h1>
-        
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label for="nombre">Nombre del Producto</label>
-                    <input type="text" class="form-control" id="nombre">
-                </div>
-                <div class="form-group">
-                    <label for="precio">Precio</label>
-                    <input type="number" class="form-control" id="precio">
-                </div>
-                <div class="form-group">
-                    <label for="cantidad">Cantidad</label>
-                    <input type="number" class="form-control" id="cantidad">
-                </div>
-                <button class="btn btn-primary" onclick="agregarProducto()">Agregar Producto</button>
-            </div>
-            <div class="col-md-8">
-                <h4>Lista de Productos</h4>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Precio</th>
-                            <th>Cantidad</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tablaProductos">
-                    </tbody>
-                </table>
-                <h4>Total: <span id="total">0</span></h4>
-            </div>
-        </div>
-    </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    
-    <script>
-        let total = 0;
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">
+			<img src="/img/quegastoicon.png" width="30" height="30" class="d-inline-block align-top" alt="">
+			Que Gasto?
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+			aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="../presupuestos/">Presupuestos <span class="sr-only">(current)</span></a>
+				</li>
 
-        function agregarProducto() {
-            const nombre = $('#nombre').val();
-            const precio = parseFloat($('#precio').val());
-            const cantidad = parseInt($('#cantidad').val());
+				<a class="nav-link" href="../gastos/add">Gastos</a>
+				</li>
 
-            if (nombre && !isNaN(precio) && !isNaN(cantidad)) {
-                const subtotal = precio * cantidad;
-                total += subtotal;
+			</ul>
+		</div>
+	</nav>
 
-                const fila = `
+	<div class="container mt-4">
+
+
+
+		<h1 class="mb-4">Lista de Productos</h1>
+
+		<div class="row">
+			<div class="col-md-4">
+				<div class="form-group">
+					<label for="nombre">Nombre del Producto</label>
+					<input type="text" class="form-control" id="nombre">
+				</div>
+				<div class="form-group">
+					<label for="precio">Precio</label>
+					<input type="number" class="form-control" id="precio">
+				</div>
+				<div class="form-group">
+					<label for="cantidad">Cantidad</label>
+					<input type="number" class="form-control" id="cantidad">
+				</div>
+				<button class="btn btn-primary" onclick="agregarProducto()">Agregar Producto</button>
+			</div>
+			<div class="col-md-8">
+				<h4>Lista de Productos</h4>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Nombre</th>
+							<th>Precio</th>
+							<th>Cantidad</th>
+							<th>Acciones</th>
+						</tr>
+					</thead>
+					<tbody id="tablaProductos">
+					</tbody>
+				</table>
+				<h4>Total: <span id="total">0</span></h4>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+	<script>
+		let total = 0;
+
+		function agregarProducto() {
+			const nombre = $('#nombre').val();
+			const precio = parseFloat($('#precio').val());
+			const cantidad = parseInt($('#cantidad').val());
+
+			if (nombre && !isNaN(precio) && !isNaN(cantidad)) {
+				const subtotal = precio * cantidad;
+				total += subtotal;
+
+				const fila = `
                     <tr>
                         <td>${nombre}</td>
                         <td>${precio}</td>
@@ -73,39 +101,40 @@
                     </tr>
                 `;
 
-                $('#tablaProductos').append(fila);
-                $('#total').text(total);
+				$('#tablaProductos').append(fila);
+				$('#total').text(total);
 
-                $('#nombre').val('');
-                $('#precio').val('');
-                $('#cantidad').val('');
-            }
-        }
+				$('#nombre').val('');
+				$('#precio').val('');
+				$('#cantidad').val('');
+			}
+		}
 
-        function eliminarProducto(boton) {
-            const fila = $(boton).closest('tr');
-            const precio = parseFloat($(fila).find('td:nth-child(2)').text());
-            const cantidad = parseInt($(fila).find('td:nth-child(3)').text());
+		function eliminarProducto(boton) {
+			const fila = $(boton).closest('tr');
+			const precio = parseFloat($(fila).find('td:nth-child(2)').text());
+			const cantidad = parseInt($(fila).find('td:nth-child(3)').text());
 
-            const subtotal = precio * cantidad;
-            total -= subtotal;
+			const subtotal = precio * cantidad;
+			total -= subtotal;
 
-            fila.remove();
-            $('#total').text(total);
-        }
+			fila.remove();
+			$('#total').text(total);
+		}
 
-        function editarProducto(boton) {
-            const fila = $(boton).closest('tr');
-            const nombre = $(fila).find('td:nth-child(1)').text();
-            const precio = parseFloat($(fila).find('td:nth-child(2)').text());
-            const cantidad = parseInt($(fila).find('td:nth-child(3)').text());
+		function editarProducto(boton) {
+			const fila = $(boton).closest('tr');
+			const nombre = $(fila).find('td:nth-child(1)').text();
+			const precio = parseFloat($(fila).find('td:nth-child(2)').text());
+			const cantidad = parseInt($(fila).find('td:nth-child(3)').text());
 
-            $('#nombre').val(nombre);
-            $('#precio').val(precio);
-            $('#cantidad').val(cantidad);
+			$('#nombre').val(nombre);
+			$('#precio').val(precio);
+			$('#cantidad').val(cantidad);
 
-            eliminarProducto(boton);
-        }
-    </script>
+			eliminarProducto(boton);
+		}
+	</script>
 </body>
+
 </html>

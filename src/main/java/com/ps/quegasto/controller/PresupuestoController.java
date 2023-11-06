@@ -21,8 +21,8 @@ public class PresupuestoController {
 	private PresupuestoService service;
 
 	@GetMapping("/add")
-	public String addCategoria(Model model) {
-		model.addAttribute("categoria", new Presupuesto());
+	public String addPresupuesto(Model model) {
+		model.addAttribute("presupuesto", new Presupuesto());
 		return "crearpresupuesto";
 	}
 
@@ -37,6 +37,11 @@ public class PresupuestoController {
 		List<Presupuesto> cat = service.getAll();
 		model.addAttribute("presupuestos", cat);
 		return "listarpresupuestos";
+	}
+	
+	@GetMapping("/cancelar")
+	public String cancelar() {
+		return "redirect:/presupuestos/";
 	}
 
 }

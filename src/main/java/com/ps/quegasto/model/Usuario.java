@@ -2,6 +2,8 @@ package com.ps.quegasto.model;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,12 +29,13 @@ public class Usuario {
 	private String apellido;
 
 	@Column(name = "correo", nullable = false, unique = true)
-	private String correo;
+	private String email;
 
 	@Column(name = "password")
 	private String password;
 
-	@Column(name = "fecha_nacimiento")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(name = "fechanac")
 	@Temporal(TemporalType.DATE)
 	private Date fechaNac;
 
@@ -63,12 +66,12 @@ public class Usuario {
 		this.apellido = apellido;
 	}
 
-	public String getCorreo() {
-		return correo;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setCorreo(String correo) {
-		this.correo = correo;
+	public void setEmail(String correo) {
+		this.email = correo;
 	}
 
 	public String getPassword() {
@@ -104,7 +107,7 @@ public class Usuario {
 		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
-		this.correo = correo;
+		this.email = correo;
 		this.password = password;
 		this.fechaNac = fechaNac;
 		this.ban = ban;

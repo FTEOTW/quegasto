@@ -38,4 +38,10 @@ public class CategoriaController {
 		model.addAttribute("categorias", cat);
 		return "listarcategorias";
 	}
+
+	@GetMapping("/cancelar")
+	public String cancelar() {
+		return "redirect:/categorias/";
+	}
+
 }

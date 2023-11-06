@@ -33,21 +33,26 @@
 		<form th:action="@{/presupuestos/guardar}" th:object=${presupuesto} method="POST">
 			<div class="form-group">
 				<label for="nombre">Nombre:</label>
-				<input type="text" class="form-control" id="nombre" required>
+				<input type="text" class="form-control" id="nombre" required th:field="*{nombre}">
 			</div>
 			<div class="form-group">
 				<label for="descripcion">Descripción:</label>
-				<textarea class="form-control" id="descripcion" rows="3"></textarea>
+				<textarea class="form-control" id="descripcion" rows="3" th:field="*{descripcion}"></textarea>
+			</div>
+			<div class="form-group">
+				<label for="descripcion">Monto:</label>
+				<input type="number" class="form-control" id="monto" th:field="*{monto}"></input>
 			</div>
 			<div class="form-group">
 				<label for="fechaInicio">Fecha de Inicio:</label>
-				<input type="date" class="form-control" id="fechaInicio" required>
+				<input type="date" class="form-control" id="fechaInicio" required th:field="*{fecha_comienzo}">
 			</div>
 			<div class="form-group">
 				<label for="fechaFin">Fecha de Fin:</label>
-				<input type="date" class="form-control" id="fechaFin" required>
+				<input type="date" class="form-control" id="fechaFin" required h:field="*{fecha_fin}">
 			</div>
 			<button type="submit" class="btn btn-primary">Crear Presupuesto</button>
+			<a href="/presupuestos/cancelar" class="btn btn-secondary">Cancelar</a> <!-- Enlace para cancelar -->
 		</form>
 	</div>
 

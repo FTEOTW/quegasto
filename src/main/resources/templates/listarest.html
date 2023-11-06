@@ -4,13 +4,14 @@
 <head>
 
 	<meta charset="ISO-8859-1">
-	<title>Categorias</title>
+	<title>Establecimientos</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-
+	<link rel="stylesheet" href="/css/styles.css">
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<a class="navbar-brand" href="#"><img src="/img/quegastoicon.png" width="30" height="30"
 					class="d-inline-block align-top" alt="">
 				Que Gasto?</a>
@@ -41,22 +42,31 @@
 				</ul>
 			</div>
 		</nav>
-	<div class="container">
-		<a th:href="@{/categorias/add}" class="btn btn-primary">Agregar Categoria</a>
-		<br><br>
+
+
+
+		<a th:href="@{/establecimientos/add}" class="btn btn-primary">Agregar Establecimiento</a>
+
 		<table class="table">
 			<tr>
-				<th>ID</th>
 				<th>Name</th>
-				<th>Descripcion</th>
+				<th>Direccion</th>
+				<th>Barrio</th>
+				<th>Latitud</th>
+				<th>Longitud</th>
+
 			</tr>
-			<tr th:each="categoria : ${categorias}">
-				<td th:text="${categoria.id}"></td>
-				<td th:text="${categoria.nombre}"></td>
-				<td th:text="${categoria.descripcion}"></td>
+			<tr th:each="establecimiento : ${establecimientos}">
+				<td th:text="${establecimiento.nombre}"></td>
+				<td th:text="${establecimiento.direccion}"></td>
+				<td th:text="${establecimiento.barrio.nombre}"></td>
+				<td th:text="${establecimiento.latitud}"></td>
+				<td th:text="${establecimiento.longitud}"></td>
 			</tr>
 		</table>
 	</div>
+
+
 
 </body>
 

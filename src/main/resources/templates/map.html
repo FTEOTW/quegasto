@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+	<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -7,6 +8,11 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 </head>
 <body>
+	
+	
+	 <!-- Include the navigation bar fragment -->
+    <div th:replace="fragments/navbar :: navbar"></div>
+	
     <div id="map" style="height: 400px;"></div>
 
     <script src="/webjars/leaflet/1.7.1/leaflet.js"></script>

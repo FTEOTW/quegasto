@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Gastos </title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<div class="container">
+	
+	<h1>Gastos del Presupuesto: <span th:text="${presupuesto.nombre}"  </span></h1>
+	
+		
+		
+		
+		
+		
+		<div class="container mt-5">
+		<!-- Botón para abrir el modal -->
+		<button id="openModal" type="button" class="btn btn-primary" data-toggle="modal"
+			data-target="#agregarGastoModal">Agregar
+			Gasto1</button>
+		
+		</div>
+		
+		<!-- Modal para agregar producto -->
+	<div class="modal fade" id="agregarGastoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Agregar Nuevo Gasto</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<!-- Formulario para agregar un nuevo producto -->
+					<form id="agregarGastoForm"th:action="@{/gastos/guardar}" method="post" enctype="multipart/form-data">
+                <div class="form-group ">
+                    <label for="descripcion" class="col-sm-2 col-form-label">Descripción:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="descripcion" name="descripcion" required>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label for="monto" class="col-sm-2 col-form-label">Monto:</label>
+                    <div class="col-sm-5">
+                        <input type="number" class="form-control" id="monto" name="monto" required>
+                    </div>
+                    
+                     <label for="fecha" class="col-sm col-form-label">Fecha:</label>
+                    <div class="col-sm-3">
+                        <input type="date" class="form-control" id="fecha" name="fecha" required>
+                    </div>
+                </div>
+               
+               
+                <div class="form-group ">
+                    <label for="establecimiento" class="col-sm-2 col-form-label">Establecimiento:</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="establecimiento" name="establecimiento">
+                            <!-- Aquí cargar las opciones de establecimientos desde el controlador -->
+                            <option value="supermercado">Supermercado</option>
+                            <option value="tienda">Tienda</option>
+                            <!-- ... -->
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label for="presupuesto" class="col-sm-2 col-form-label">Presupuesto:</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="presupuesto" name="presupuesto">
+                            <!-- Aquí cargar las opciones de establecimientos desde el controlador -->
+                            <option value="vacaciones">Vacaciones</option>
+                            <option value="compras">Compras</option>
+                            <!-- ... -->
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label for="foto" class="col-sm-2 col-form-label">Subir Foto:</label>
+                    <div class="col-sm-10">
+                        <input type="file" class="form-control-file" id="foto" name="foto">
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <div class="col-sm-10 offset-sm-2">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <a href="#" class="btn btn-secondary">Cancelar</a>
+                    </div>
+                </div>
+            </form>
+				</div>
+
+			</div>
+		</div>
+	</div>
+		
+		<a th:href="@{/gastos/add}" class="btn btn-primary">Agregar Gasto</a>
+		
+		<br><br>
+		<table class="table">
+			<tr>
+				<th>ID</th>
+				<th>Descripcion</th>
+				<th>Monto</th>
+				<th>Fecha</th>
+				<th>Categoria</th>
+				<th>Establecimiento</th>
+				<th>Presupuesto</th>
+				
+			</tr>
+			<tr th:each="gasto : ${gastos}">
+				<td th:text="${gasto.id}"></td>
+				<td th:text="${gasto.descripcion}"></td>
+				<td th:text="${gasto.monto}"></td>
+				<td th:text="${gasto.fecha}"></td>
+				<td th:text="${gasto.categoria.nombre}"></td>
+				<td th:text="${gasto.establecimiento.nombre}"></td>
+				<td th:text="${gasto.presupuesto.nombre}"></td>
+			</tr>
+		</table>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<script>
+		document.getElementById('openModal').addEventListener('click', function () {
+			$('#agregarGastoForm')[0].reset();
+		});
+	</script>
+</body>
+</html>

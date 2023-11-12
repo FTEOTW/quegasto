@@ -10,37 +10,85 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<a class="navbar-brand" href="#"><img src="/img/quegastoicon.png" width="30" height="30"
-					class="d-inline-block align-top" alt="">
-				Que Gasto?</a>
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item">
-						<span class="navbar-text mr-2">¡Bienvenido, <span th:text="Esteban"></span>!</span>
-					</li>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#"><img src="/img/quegastoicon.png" width="30" height="30"
+				class="d-inline-block align-top" alt="">
+			Que Gasto?</a>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+					<span class="navbar-text mr-2">¡Bienvenido, <span th:text="Esteban"></span>!</span>
+				</li>
 
-					<li class="nav-item active">
-						<a class="nav-link" href="../presupuestos/">Presupuestos <span
-								class="sr-only">(current)</span></a>
-					</li>
-					<li class="nav-item">
+				<li class="nav-item active">
+					<a class="nav-link" href="../presupuestos/">Presupuestos <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item">
 					<a class="nav-link" href="../gastos/add">Gastos</a>
-					</li>
+				</li>
 
-					<li class="nav-item">
-						<a class="nav-link" href="../categorias/">Categorias</a>
-						</li>
+				<li class="nav-item">
+					<a class="nav-link" href="../categorias/">Categorias</a>
+				</li>
 
-					<li class="nav-item">
-						<a class="nav-link" href="#">Editar Perfil</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Cerrar Sesión</a>
-					</li>
-				</ul>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Editar Perfil</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Cerrar Sesión</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="container mt-5">
+		<!-- Botón para abrir el modal -->
+		<button id="openModal" type="button" class="btn btn-primary" data-toggle="modal"
+			data-target="#agregarProductoModal">Agregar
+			Producto</button>
+
+		<!-- Lista de Productos -->
+		<ul class="list-group mt-3">
+			<!-- Los productos se añadirán aquí dinámicamente -->
+		</ul>
+	</div>
+
+	<!-- Modal para agregar producto -->
+	<div class="modal fade" id="agregarProductoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Agregar Nueva Categoria</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<!-- Formulario para agregar un nuevo producto -->
+					<form id="agregarProductoForm" th:action="@{/categorias/guardar}" th:object=${categoria}
+						method="POST">
+						<div class="form-group">
+							<label for="nombreProducto">Nombre de la categoria</label>
+							<input th:field="*{nombre}" type="text" class="form-control" id="nombreProducto" required>
+						</div>
+
+						<div class="form-group">
+							<label for="descripcionCategoria">Descripcion</label>
+							<textarea th:field="*{descripcion}" class="form-control" id="description" name="description"
+								rows="3"></textarea>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+							<button type="submit" class="btn btn-primary" id="guardarProducto">Guardar</button>
+						</div>
+					</form>
+				</div>
+
 			</div>
-		</nav>
+		</div>
+	</div>
+
 	<div class="container">
 		<a th:href="@{/categorias/add}" class="btn btn-primary">Agregar Categoria</a>
 		<br><br>
@@ -57,7 +105,14 @@
 			</tr>
 		</table>
 	</div>
-
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<script>
+		document.getElementById('openModal').addEventListener('click', function () {
+			$('#agregarProductoForm')[0].reset();
+		});
+	</script>
 </body>
 
 </html>

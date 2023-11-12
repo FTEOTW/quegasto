@@ -5,11 +5,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ps.quegasto.model.Usuario;
 import com.ps.quegasto.service.UsuarioService;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/")
@@ -20,6 +23,7 @@ public class LoginController {
 
 	@GetMapping("")
 	public String getAllCategorias(Model model) {
+		model.addAttribute("usuario", new Usuario());
 		return "login";
 	}
 
@@ -48,10 +52,11 @@ public class LoginController {
 	}
 
 	@PostMapping("/validaruser")
-	public String validarUser(Usuario user, Model model) {
+	public String validarUser(@ModelAttribute Usuario user,  HttpSession session, Model model) {
 		Usuario u = service.getUserByEmail(user.getEmail());
+		System.out.println(u.getId());
 		if (u != null) {
-			model.addAttribute("usuario", u);
+			session.setAttribute("usuario", u);
 		}
 		return "redirect:/presupuestos/";
 	}

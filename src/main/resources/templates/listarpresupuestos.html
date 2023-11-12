@@ -18,7 +18,7 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item">
-						<span class="navbar-text mr-2">¡Bienvenido, <span th:text="Esteban"></span>!</span>
+						<span class="navbar-text mr-2">¡Bienvenido, <span th:text="${usuario.nombre}"></span>!</span>
 					</li>
 
 					<li class="nav-item active">
@@ -66,7 +66,7 @@
 				<td>
 					<button class="btn btn-danger btn-sm" onclick="eliminarProducto(this)">Eliminar</button>
 					<a th:href="@{/editarPresupuesto/{id}(id=${presupuesto.id})}" class="btn btn-info btn-sm">Editar</a>
-					<a th:href="@{/gastos/add/{id}(id=${presupuesto.id})}" class="btn btn-success btn-sm">Agregar Gasto</a>
+					<a th:href="@{/gastos/list(id=${presupuesto.id})}" class="btn btn-success btn-sm">Ver Gastos</a>
 				</td>
 			</tr>
 		</table>

@@ -34,6 +34,7 @@ public class CategoriaController {
 
 	@GetMapping("/")
 	public String getAllCategorias(Model model) {
+		model.addAttribute("categoria", new Categoria());// este es para tener el objeto para enviar a guardar
 		List<Categoria> cat = categoriaService.getAllCategorias();
 		model.addAttribute("categorias", cat);
 		return "listarcategorias";

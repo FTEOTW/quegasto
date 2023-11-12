@@ -1,6 +1,7 @@
 package com.ps.quegasto.model;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -9,6 +10,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -64,6 +66,9 @@ public class Presupuesto {
 	@Column(name = "fecha_fin")
 	public Date fecha_fin;
 
+	@OneToMany(mappedBy = "presupuesto")
+    private List<UsuarioPresupuesto> usuarioPresupuestos;
+	
 	public int getId() {
 		return id;
 	}

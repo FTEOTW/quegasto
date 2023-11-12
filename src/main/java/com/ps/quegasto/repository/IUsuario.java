@@ -9,4 +9,6 @@ import com.ps.quegasto.model.Usuario;
 public interface IUsuario extends CrudRepository<Usuario, Integer>{
 
 	Usuario findByEmail(String email);
+	
+	int findIdByEmail(String email);
 }

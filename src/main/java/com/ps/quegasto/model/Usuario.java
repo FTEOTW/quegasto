@@ -1,6 +1,7 @@
 package com.ps.quegasto.model;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -9,6 +10,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -20,7 +22,7 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private Long id;
+	private int id;
 
 	@Column(name = "nombre", nullable = false)
 	private String nombre;
@@ -42,11 +44,14 @@ public class Usuario {
 	@Column(name = "ban")
 	private boolean ban;
 
-	public Long getId() {
+	@OneToMany(mappedBy = "usuario")
+	private List<UsuarioPresupuesto> usuarioPresupuestos;
+
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -101,8 +106,7 @@ public class Usuario {
 	public Usuario() {
 	}
 
-	public Usuario(Long id, String nombre, String apellido, String correo, String password, Date fechaNac,
-			boolean ban) {
+	public Usuario(int id, String nombre, String apellido, String correo, String password, Date fechaNac, boolean ban) {
 		super();
 		this.id = id;
 		this.nombre = nombre;

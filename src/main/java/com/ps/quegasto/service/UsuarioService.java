@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ps.quegasto.model.Presupuesto;
 import com.ps.quegasto.model.Usuario;
 import com.ps.quegasto.repository.IUsuario;
 
@@ -20,6 +21,13 @@ public class UsuarioService {
 
 	public Usuario getUserByEmail(String email) {
 		return repository.findByEmail(email);
+	}
+	
+	public List<Presupuesto> getPresupuestoByUser(Usuario u)
+	{
+//		repository.fin
+		return null;
+		
 	}
 	
 	public void save(Usuario user)

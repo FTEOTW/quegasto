@@ -11,7 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ps.quegasto.model.Presupuesto;
+import com.ps.quegasto.model.Usuario;
 import com.ps.quegasto.service.PresupuestoService;
+import com.ps.quegasto.service.UsuarioPresupuestoService;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/presupuestos")
@@ -19,6 +23,9 @@ public class PresupuestoController {
 
 	@Autowired
 	private PresupuestoService service;
+	
+	@Autowired
+	private UsuarioPresupuestoService upService;
 
 	@GetMapping("/add")
 	public String addPresupuesto(Model model) {
@@ -33,8 +40,13 @@ public class PresupuestoController {
 	}
 	
 	@GetMapping("/")
-	public String getAllPresupuestos(Model model) {
-		List<Presupuesto> cat = service.getAll();
+	public String getAllPresupuestos(HttpSession session, Model model) {
+		Usuario user = (Usuario) session.getAttribute("usuario"); // Retrieve the username from the session
+        model.addAttribute("usuario", user);
+//		List<Presupuesto> cat = service.getAll(); this get all the presupuestos
+        
+		List<Presupuesto> cat = upService.obtenerPresupuestosPorUsuario(user.getId());
+		
 		model.addAttribute("presupuestos", cat);
 		return "listarpresupuestos";
 	}
